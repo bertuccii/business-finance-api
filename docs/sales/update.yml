@@ -1,0 +1,27 @@
+put:
+  tags:
+    - Sales
+  summary: Update a sale
+  security:
+    - bearerAuth: []
+  parameters:
+    - in: path
+      name: sale_id
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: number
+            description:
+              type: string
+  responses:
+    '200':
+      description: Sale updated successfully
+    '404':
+      description: Sale not found

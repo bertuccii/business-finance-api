@@ -1,0 +1,24 @@
+post:
+  tags:
+    - Sales
+  summary: Create a new sale
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - amount
+          properties:
+            amount:
+              type: number
+            description:
+              type: string
+  responses:
+    '201':
+      description: Sale created successfully
+    '400':
+      description: Amount is required

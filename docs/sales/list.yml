@@ -1,0 +1,9 @@
+get:
+  tags:
+    - Sales
+  summary: List all sales
+  security:
+    - bearerAuth: []
+  responses:
+    '200':
+      description: List of sales

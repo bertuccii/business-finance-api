@@ -1,0 +1,27 @@
+put:
+  tags:
+    - Expenses
+  summary: Update an expense
+  security:
+    - bearerAuth: []
+  parameters:
+    - in: path
+      name: expense_id
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: number
+            category:
+              type: string
+  responses:
+    '200':
+      description: Expense updated successfully
+    '404':
+      description: Expense not found
