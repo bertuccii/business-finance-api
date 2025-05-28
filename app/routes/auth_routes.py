@@ -5,6 +5,7 @@ from flask_jwt_extended import create_access_token
 from datetime import timedelta
 from flasgger import swag_from
 
+
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/register', methods=['POST'])
