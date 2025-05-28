@@ -9,3 +9,4 @@ flasgger
 python-dotenv
 flask-cors
 pytest
+pytest-cov

@@ -49,3 +49,6 @@ jobs:
         PYTHONPATH: .
       run: |
         pytest
+    - name: Run tests with coverage
+      run: |
+        pytest --cov=app tests/
