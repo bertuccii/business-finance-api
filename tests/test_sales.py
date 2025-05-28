@@ -69,3 +69,4 @@ def test_delete_sale(client, auth_token):
 
     assert response.status_code == 200
     assert b'Sale deleted successfully' in response.data
+
