@@ -1,4 +1,4 @@
-from app.services.report_service import generate_report
+from app.services.report_service import generate_summary_report
 
 def test_generate_report():
     summary = generate_report(user_id=1)
