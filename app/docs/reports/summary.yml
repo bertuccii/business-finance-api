@@ -1,0 +1,27 @@
+get:
+  tags:
+    - Reports
+  summary: Get financial summary
+  consumes:
+    - application/json
+  parameters:
+    - name: Authorization
+      in: header
+      required: true
+      type: string
+      description: Bearer token. Example "Bearer <your_token_here>"
+  responses:
+    200:
+      description: Summary report with total sales, expenses, and profit
+      schema:
+        type: object
+        properties:
+          total_sales:
+            type: number
+            example: 1250.00
+          total_expenses:
+            type: number
+            example: 870.00
+          net_profit:
+            type: number
+            example: 380.00

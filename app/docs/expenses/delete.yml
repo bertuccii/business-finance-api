@@ -1,0 +1,22 @@
+delete:
+  tags:
+    - Expenses
+  summary: Delete an expense
+  consumes:
+    - application/json
+  parameters:
+    - name: Authorization
+      in: header
+      required: true
+      type: string
+      description: Bearer token. Example "Bearer <your_token_here>"
+    - name: expense_id
+      in: path
+      required: true
+      type: integer
+      description: ID of the expense to delete
+  responses:
+    200:
+      description: Expense deleted successfully
+    404:
+      description: Expense not found

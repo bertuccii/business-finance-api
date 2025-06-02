@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Expenses
+  summary: List all expenses
+  consumes:
+    - application/json
+  parameters:
+    - name: Authorization
+      in: header
+      required: true
+      type: string
+      description: Bearer token. Example "Bearer <your_token_here>"
+  responses:
+    200:
+      description: List of expenses
+      schema:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            amount:
+              type: number
+              example: 99.99
+            category:
+              type: string
+              example: Food
+            created_at:
+              type: string
+              format: date-time
+              example: 2025-05-27T18:15:00Z

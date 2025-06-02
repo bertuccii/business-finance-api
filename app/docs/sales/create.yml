@@ -1,0 +1,47 @@
+post:
+  tags:
+    - Sales
+  summary: Create a new sale
+  consumes:
+    - application/json
+  parameters:
+    - name: Authorization
+      in: header
+      required: true
+      type: string
+      description: Bearer token. Example "Bearer <your_token_here>"
+    - name: body
+      in: body
+      required: true
+      schema:
+        type: object
+        required:
+          - amount
+        properties:
+          amount:
+            type: number
+            example: 299.99
+          description:
+            type: string
+            example: "Sold 3 T-shirts"
+  responses:
+    201:
+      description: Sale created successfully
+      schema:
+        type: object
+        properties:
+          id:
+            type: integer
+            example: 7
+          amount:
+            type: number
+            example: 299.99
+          description:
+            type: string
+            example: "Sold 3 T-shirts"
+          created_at:
+            type: string
+            format: date-time
+            example: 2025-05-27T18:45:00Z
+    400:
+      description: Amount is required

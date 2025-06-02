@@ -4,12 +4,14 @@ from app.models import User
 from flask_jwt_extended import create_access_token
 from datetime import timedelta
 from flasgger import swag_from
+import os
+DOCS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'docs'))
 
 
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/register', methods=['POST'])
-@swag_from('docs/auth/register.yml')
+@swag_from(os.path.join(DOCS_PATH, 'auth', 'register.yml'))
 def register():
     data = request.get_json()
 
@@ -31,7 +33,7 @@ def register():
     return jsonify({'msg': 'User created successfully'}), 201
 
 @auth_bp.route('/login', methods=['POST'])
-@swag_from('docs/auth/login.yml')
+@swag_from(os.path.join(DOCS_PATH, 'auth', 'login.yml'))
 def login():
     data = request.get_json()
 

@@ -1,9 +1,0 @@
-get:
-  tags:
-    - Expenses
-  summary: List all expenses
-  security:
-    - bearerAuth: []
-  responses:
-    '200':
-      description: List of expenses

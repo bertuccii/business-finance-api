@@ -1,0 +1,22 @@
+delete:
+  tags:
+    - Sales
+  summary: Delete a sale
+  consumes:
+    - application/json
+  parameters:
+    - name: Authorization
+      in: header
+      required: true
+      type: string
+      description: Bearer token. Example "Bearer <your_token_here>"
+    - name: sale_id
+      in: path
+      required: true
+      type: integer
+      description: ID of the sale to delete
+  responses:
+    200:
+      description: Sale deleted successfully
+    404:
+      description: Sale not found

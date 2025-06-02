@@ -1,0 +1,27 @@
+post:
+  tags:
+    - Authentication
+  summary: Login a user
+  consumes:
+    - application/json
+  parameters:
+    - name: body
+      in: body
+      required: true
+      schema:
+        type: object
+        required:
+          - username
+          - password
+        properties:
+          username:
+            type: string
+          password:
+            type: string
+  responses:
+    200:
+      description: Access token returned
+    400:
+      description: Missing username or password
+    401:
+      description: Invalid credentials

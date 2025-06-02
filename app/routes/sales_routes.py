@@ -3,11 +3,13 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from app import db
 from app.models import Sale
 from flasgger import swag_from
+import os
+DOCS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'docs'))
 
 sales_bp = Blueprint('sales', __name__)
 
 @sales_bp.route('/', methods=['POST'])
-@swag_from('docs/sales/create.yml')
+@swag_from(os.path.join(DOCS_PATH, 'sales', 'create.yml'))
 @jwt_required()
 def create_sale():
     data = request.get_json()
@@ -28,7 +30,7 @@ def create_sale():
     return jsonify({'msg': 'Sale created successfully', 'sale_id': new_sale.id}), 201
 
 @sales_bp.route('/', methods=['GET'])
-@swag_from('docs/sales/list.yml')
+@swag_from(os.path.join(DOCS_PATH, 'sales', 'list.yml'))
 @jwt_required()
 def get_sales():
     current_user = int(get_jwt_identity())
@@ -47,7 +49,7 @@ def get_sales():
     return jsonify({'sales': sales_list}), 200
 
 @sales_bp.route('/<int:sale_id>', methods=['PUT'])
-@swag_from('docs/sales/update.yml')
+@swag_from(os.path.join(DOCS_PATH, 'sales', 'update.yml'))
 @jwt_required()
 def update_sale(sale_id):
     data = request.get_json()
@@ -65,7 +67,7 @@ def update_sale(sale_id):
     return jsonify({'msg': 'Sale updated successfully'}), 200
 
 @sales_bp.route('/<int:sale_id>', methods=['DELETE'])
-@swag_from('docs/sales/delete.yml')
+@swag_from(os.path.join(DOCS_PATH, 'sales', 'delete.yml'))
 @jwt_required()
 def delete_sale(sale_id):
     current_user = int(get_jwt_identity())

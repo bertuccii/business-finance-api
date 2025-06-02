@@ -1,9 +1,0 @@
-get:
-  tags:
-    - Reports
-  summary: Get financial summary
-  security:
-    - bearerAuth: []
-  responses:
-    '200':
-      description: Summary report with total sales, expenses, and profit

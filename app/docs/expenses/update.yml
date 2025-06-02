@@ -1,0 +1,50 @@
+put:
+  tags:
+    - Expenses
+  summary: Update an expense
+  consumes:
+    - application/json
+  parameters:
+    - name: Authorization
+      in: header
+      required: true
+      type: string
+      description: Bearer token. Example "Bearer <your_token_here>"
+    - name: expense_id
+      in: path
+      required: true
+      type: integer
+      description: ID of the expense to update
+    - name: body
+      in: body
+      required: true
+      schema:
+        type: object
+        properties:
+          amount:
+            type: number
+            example: 200.5
+          category:
+            type: string
+            example: Transportation
+  responses:
+    200:
+      description: Expense updated successfully
+      schema:
+        type: object
+        properties:
+          id:
+            type: integer
+            example: 1
+          amount:
+            type: number
+            example: 200.5
+          category:
+            type: string
+            example: Transportation
+          created_at:
+            type: string
+            format: date-time
+            example: 2025-05-27T18:15:00Z
+    404:
+      description: Expense not found
