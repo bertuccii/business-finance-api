@@ -12,7 +12,7 @@ user_schema = UserSchema()
 
 def test_sale_serialization(app):
     with app.app_context():
-        sale = Sale(id=1, amount=100.0, description="Test sale", user_id=1)
+        sale = Sale(id=1, amount=100.0, description="Test sale")
         result = sale_schema.dump(sale)
 
         assert result["amount"] == 100.0
@@ -34,7 +34,7 @@ def test_sale_deserialization(app):
 
 def test_expense_serialization(app):
     with app.app_context():
-        expense = Expense(id=1, amount=50.0, category="Food", user_id=1)
+        expense = Expense(id=1, amount=50.0, category="Food")
         result = expense_schema.dump(expense)
 
         assert result["amount"] == 50.0
