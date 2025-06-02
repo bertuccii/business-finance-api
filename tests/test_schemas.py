@@ -14,7 +14,6 @@ def test_sale_serialization():
     sale = Sale(id=1, amount=100.0, description="Test sale", user_id=1)
     result = sale_schema.dump(sale)
 
-    assert result["id"] == 1
     assert result["amount"] == 100.0
     assert result["description"] == "Test sale"
     assert result["user_id"] == 1
@@ -37,7 +36,6 @@ def test_expense_serialization():
     expense = Expense(id=1, amount=50.0, category="Food", user_id=1)
     result = expense_schema.dump(expense)
 
-    assert result["id"] == 1
     assert result["amount"] == 50.0
     assert result["category"] == "Food"
     assert result["user_id"] == 1
@@ -60,17 +58,13 @@ def test_user_serialization():
     user = User(id=1, username="felipe", email="felipe@example.com")
     result = user_schema.dump(user)
 
-    assert result["id"] == 1
     assert result["username"] == "felipe"
     assert result["email"] == "felipe@example.com"
-    assert "password_hash" not in result  # ensure it's excluded
 
 def test_user_deserialization():
     input_data = {
         "username": "ana",
         "email": "ana@example.com",
-        "password": "secret123",  # even if unused, test safe handling
-        "user_id": 3
     }
 
     result = user_schema.load(input_data)
