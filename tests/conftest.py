@@ -2,13 +2,19 @@ import pytest
 from app import create_app, db
 
 @pytest.fixture
-def client():
-    app = create_app('config.TestingConfig')
-    app.config['TESTING'] = True
+def app():
+    app = create_app()
+    with app.app_context():
+        yield app
 
-    with app.test_client() as client:
-        with app.app_context():
-            db.create_all()
-            yield client
-            db.session.remove()
-            db.drop_all()
+@pytest.fixture
+def client(app):
+    return app.test_client()
+
+@pytest.fixture
+def db_session(app):
+    with app.app_context():
+        db.create_all()
+        yield db.session
+        db.session.remove()
+        db.drop_all()
