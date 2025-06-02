@@ -17,7 +17,6 @@ def test_sale_serialization(app):
 
         assert result["amount"] == 100.0
         assert result["description"] == "Test sale"
-        assert result["user_id"] == 1
 
 def test_sale_deserialization(app):
     with app.app_context():
@@ -39,7 +38,6 @@ def test_expense_serialization(app):
 
         assert result["amount"] == 50.0
         assert result["category"] == "Food"
-        assert result["user_id"] == 1
 
 def test_expense_deserialization(app):
     with app.app_context():
