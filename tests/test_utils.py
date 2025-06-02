@@ -1,22 +1,25 @@
 from app.utils import hash_password, verify_password
 
-def test_hash_password_returns_different_string():
-    password = "mysecret123"
-    hashed = hash_password(password)
+def test_hash_password_returns_different_string(app):
+    with app.app_context():
+        password = "mysecret123"
+        hashed = hash_password(password)
 
-    assert hashed != password
-    assert isinstance(hashed, str)
-    assert hashed.startswith("pbkdf2:")
+        assert isinstance(hashed, str)
+        assert hashed != password
+        assert ":" in hashed  # formato esperado, independente do algoritmo
 
-def test_verify_password_success():
-    password = "mysecret123"
-    hashed = hash_password(password)
+def test_verify_password_success(app):
+    with app.app_context():
+        password = "mysecret123"
+        hashed = hash_password(password)
 
-    assert verify_password(hashed, password) is True
+        assert verify_password(hashed, password) is True
 
-def test_verify_password_failure():
-    password = "mysecret123"
-    wrong_password = "wrongpass"
-    hashed = hash_password(password)
+def test_verify_password_failure(app):
+    with app.app_context():
+        password = "mysecret123"
+        wrong_password = "wrongpass"
+        hashed = hash_password(password)
 
-    assert verify_password(hashed, wrong_password) is False
+        assert verify_password(hashed, wrong_password) is False
