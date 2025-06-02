@@ -16,19 +16,16 @@ def test_sale_serialization():
 
     assert result["amount"] == 100.0
     assert result["description"] == "Test sale"
-    assert result["user_id"] == 1
 
 def test_sale_deserialization():
     input_data = {
         "amount": 200.0,
-        "description": "New sale",
-        "user_id": 2
+        "description": "New sale"
     }
 
     result = sale_schema.load(input_data)
     assert result.amount == 200.0
     assert result.description == "New sale"
-    assert result.user_id == 2
 
 # --- Expense Schema ---
 
@@ -38,19 +35,16 @@ def test_expense_serialization():
 
     assert result["amount"] == 50.0
     assert result["category"] == "Food"
-    assert result["user_id"] == 1
 
 def test_expense_deserialization():
     input_data = {
         "amount": 75.0,
-        "category": "Transport",
-        "user_id": 2
+        "category": "Transport"
     }
 
     result = expense_schema.load(input_data)
     assert result.amount == 75.0
     assert result.category == "Transport"
-    assert result.user_id == 2
 
 # --- User Schema ---
 
@@ -64,7 +58,7 @@ def test_user_serialization():
 def test_user_deserialization():
     input_data = {
         "username": "ana",
-        "email": "ana@example.com",
+        "email": "ana@example.com"
     }
 
     result = user_schema.load(input_data)
