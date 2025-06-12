@@ -18,4 +18,4 @@ def get_summary_report():
 
     
 
-    return jsonify(report), 200
+    return jsonify({'report': report}), 200
