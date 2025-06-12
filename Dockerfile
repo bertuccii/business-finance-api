@@ -1,18 +1,18 @@
-# Usar imagem oficial do Python
+# Use official version from python
 FROM python:3.10-slim
 
-# Definir diretório de trabalho
+# define work dir
 WORKDIR /app
 
-# Copiar arquivos
+# Copy files
 COPY . /app
 
-# Instalar dependências
+# install dependencys
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Expor a porta padrão do Flask
+# port
 EXPOSE 5000
 
-# Comando para iniciar a aplicação
+# init app
 CMD ["python", "run.py"]

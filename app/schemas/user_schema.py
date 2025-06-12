@@ -7,4 +7,4 @@ class UserSchema(SQLAlchemyAutoSchema):
         model = User
         load_instance = True
         sqla_session = db.session
-        exclude = ("password_hash",)  # nunca expor senha
+        exclude = ("password_hash",)  

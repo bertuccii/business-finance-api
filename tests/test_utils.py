@@ -7,7 +7,7 @@ def test_hash_password_returns_different_string(app):
 
         assert isinstance(hashed, str)
         assert hashed != password
-        assert ":" in hashed  # formato esperado, independente do algoritmo
+        assert ":" in hashed  
 
 def test_verify_password_success(app):
     with app.app_context():

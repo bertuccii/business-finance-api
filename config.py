@@ -13,7 +13,7 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'  # Banco em memória para testes
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'  
 
 class ProductionConfig(Config):
     DEBUG = False

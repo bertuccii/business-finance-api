@@ -3,6 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.models import Sale, Expense
 from flasgger import swag_from
 import os
+from app.services import report_service
 DOCS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'docs'))
 
 reports_bp = Blueprint('reports', __name__)
@@ -11,16 +12,10 @@ reports_bp = Blueprint('reports', __name__)
 @swag_from(os.path.join(DOCS_PATH, 'reports', 'summary.yml'))
 @jwt_required()
 def get_summary_report():
-    current_user = get_jwt_identity()
+    user_id = get_jwt_identity()
 
-    total_sales = sum(sale.amount for sale in Sale.query.filter_by(user_id=current_user).all())
-    total_expenses = sum(expense.amount for expense in Expense.query.filter_by(user_id=current_user).all())
-    profit = total_sales - total_expenses
+    report = report_service.generate_summary_report(user_id=user_id)
 
-    report = {
-        'total_sales': total_sales,
-        'total_expenses': total_expenses,
-        'profit': profit
-    }
+    
 
-    return jsonify({'report': report}), 200
+    return jsonify(report), 200
